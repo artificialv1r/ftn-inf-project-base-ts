@@ -52,6 +52,20 @@ function renderData(): void {
                 cell5.textContent = formattedDate;
                 newRow.appendChild(cell5);
 
+                // dodajemo dugme za ažuriranje u svaki red
+                const cel6 = document.createElement('td');
+                const editButton = document.createElement('button');
+                editButton.textContent = 'Edit';
+                editButton.style.width = 'auto';
+                cel6.style.textAlign = 'center';
+
+                const userId = users[i].id;
+                editButton.onclick = function () {
+                    window.location.href = `./userForm/userForm.html?id=${userId}`;
+                };
+                cel6.appendChild(editButton);
+                newRow.appendChild(cel6);
+
                 // dodajemo red u tabelu
                 table.appendChild(newRow);
             }
