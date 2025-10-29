@@ -89,4 +89,19 @@ export class UserService {
                 throw error
             });
     }
+
+    deleteUser(userId: string): Promise<void> {
+        return fetch(`${this.apiUrl}/${userId}`, { method: 'DELETE' })
+            .then(response => {
+                if (!response.ok) {
+                    return response.text().then(errorMessage => {
+                        throw { status: response.status, message: errorMessage }
+                    })
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error.status)
+                throw error
+            });
+    }
 }

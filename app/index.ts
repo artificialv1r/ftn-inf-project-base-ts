@@ -66,6 +66,25 @@ function renderData(): void {
                 cel6.appendChild(editButton);
                 newRow.appendChild(cel6);
 
+                const cel7 = document.createElement('td');
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Remove';
+                deleteButton.style.width = 'auto';
+                cel7.style.textAlign = 'center';
+
+                // stavljamo da se klikom na dugme pošalje DELETE zahtev za brisanje korisnika
+                deleteButton.onclick = function () {
+                    userService.deleteUser(userId.toString())
+                        .then(() => {
+                            window.location.reload();
+                        })
+                        .catch(error => {
+                            console.error(error.status, error.text);
+                        });
+                };
+                cel7.appendChild(deleteButton);
+                newRow.appendChild(cel7);
+
                 // dodajemo red u tabelu
                 table.appendChild(newRow);
             }
